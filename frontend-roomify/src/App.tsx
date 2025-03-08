@@ -1,21 +1,23 @@
+// src/App.tsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getCurrentUser } from "./store/slices/authSlice";
+import { getCurrentUser } from "./components/store/slices/authSlice";
 import Layout from "./components/layout/Layout";
-import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import PropertiesPage from "./pages/PropertiesPage";
-import PropertyDetailPage from "./pages/PropertyDetailPage";
-import BookingPage from "./pages/BookingPage";
-import ProfilePage from "./pages/ProfilePage";
-import MyPropertiesPage from "./pages/MyPropertiesPage";
-import NotFoundPage from "./pages/NotFoundPage";
+import HomePage from "./components/pages/HomePage";
+import LoginPage from "./components/pages/LoginPage";
+import RegisterPage from "./components/pages/RegisterPage";
+import PropertiesPage from "./components/pages/PropertiesPage";
+import PropertyDetailPage from "./components/pages/PropertyDetailPage";
+import BookingPage from "./components/pages/BookingPage";
+import ProfilePage from "./components/pages/ProfilePage";
+import MyPropertiesPage from "./components/pages/MyPropertiesPage";
+import NotFoundPage from "./components/pages/NotFoundPage";
 import ProtectedRoute from "./components/common/ProtectedRoute";
+import { AppDispatch } from "./components/store/store";
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -33,7 +35,7 @@ function App() {
           <Route path="properties" element={<PropertiesPage />} />
           <Route path="properties/:id" element={<PropertyDetailPage />} />
 
-          {/* Rotas protegidas */}
+          {/* Protected routes */}
           <Route
             path="booking/:id"
             element={

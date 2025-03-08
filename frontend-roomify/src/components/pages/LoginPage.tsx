@@ -12,7 +12,7 @@ const LoginPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
-  const { isAuthenticated, loading, error } = useSelector(
+  const { isAuthenticated, isLoading, error } = useSelector(
     (state: RootState) => state.auth
   );
 
@@ -128,7 +128,7 @@ const LoginPage = () => {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                disabled={loading}
+                disabled={isLoading}
               />
             </div>
             <div>
@@ -145,7 +145,7 @@ const LoginPage = () => {
                 placeholder="Senha"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                disabled={loading}
+                disabled={isLoading}
               />
             </div>
           </div>
@@ -179,10 +179,10 @@ const LoginPage = () => {
           <div>
             <button
               type="submit"
-              disabled={loading}
+              disabled={isLoading}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50"
             >
-              {loading ? (
+              {isLoading ? (
                 <span className="flex items-center">
                   <svg
                     className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"

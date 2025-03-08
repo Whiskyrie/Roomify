@@ -1,3 +1,4 @@
+// src/types/property.ts
 export interface Property {
   id: string;
   title: string;
@@ -5,8 +6,9 @@ export interface Property {
   propertyType: 'apartment' | 'house' | 'studio' | 'condominium' | string;
   price: number;
   priceType: 'monthly' | 'daily' | string;
+  status: PropertyStatus;
   location: string;
-  address: {
+  address?: {
     street: string;
     number: string;
     complement?: string;
@@ -26,7 +28,7 @@ export interface Property {
   available: boolean;
   createdAt: string;
   updatedAt: string;
-  owner: {
+  owner?: {
     id: string;
     name: string;
     email: string;
@@ -34,6 +36,7 @@ export interface Property {
     memberSince: string;
     avatar?: string;
   };
+  maxGuests?: number;
 }
 
 export interface PropertyFilters {
@@ -53,4 +56,10 @@ export interface PropertyState {
   loading: boolean;
   error: string | null;
   total: number;
+}
+
+export enum PropertyStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  PENDING = 'PENDING'
 }
